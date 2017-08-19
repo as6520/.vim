@@ -1,5 +1,4 @@
-inore map jk <ESC>    "change mode changing to jk
-let mapleader="\<Space>"    "change leader key to space
+let mapleader=" "    "change leader key to space
 
 filetype plugin indent on   "activate detection of filetype, plugin and indentation
 set nowrap    "
@@ -27,16 +26,15 @@ nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>    "use <ESC> to cancel search
 nnoremap <Leader><Leader> :e#<CR>    "reopen an old file
 set showmatch	"show matching parenthesis
 
-execute pathogen#infect()   "use pathogen
+execute pathogen#infect()
 
 "NERDTree plugin config
 let NERDTreeMapActivateNode='<right>'
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>j :NERDTreeFind<CR>
-autocmd VimEnter * NERDTREE
+autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd p
 
 "Git gutter
 let g:gitgutter_sign_column_always=1
-
 
