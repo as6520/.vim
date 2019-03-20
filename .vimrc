@@ -1,40 +1,82 @@
-let mapleader=" "    "change leader key to space
+set nocompatible
+filetype off
 
-filetype plugin indent on   "activate detection of filetype, plugin and indentation
-set nowrap    "
-set tabstop=4	"tabs are 4 spaces
-set shiftwidth=4
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+"
+" " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'vim-airline/vim-airline'
+
+Plugin 'whatyouhide/vim-gotham'
+call vundle#end()
+
+syntax on
+filetype plugin indent on
+
+set modelines=0
+set number
+set showcmd
+set cursorline
+set lazyredraw
+set showmatch
+
+set incsearch
+set hlsearch
+nnoremap <leader><Tab> :nohlsearch<CR>
+
+nnoremap j gj
+nnoremap k gk
+
+nnoremap B ^
+nnoremap E $
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+" temporaily block using arrows
+nnoremap <up>  <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+map <SPACE> <leader>
+
+set encoding=utf-8
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
-set smartindent
-set autoindent
+set noshiftround
 
-colorscheme Tomorrow-Night    "theme
-syntax on    "highlight syntaxes
-set encoding=utf-8    "use utf-8 encoding
+map <Tab> <C-W>w
+map <Bar> <C-W>v<C-W><Right>
+map - <C-W>s<C-W><Down>
 
-set lines=35    "number of rows for default vi
-set columns=150    "number of columns for default vi
-set colorcolumn=80   "pep-8 spec to ensure column does not go beyond 80
-set number    "line number
+set splitright
+set splitbelow
 
-map <leader>s :source ~/.vimrc<CR>    "map leader + s to source ~/.vimrc
-set hidden    "hide the file when new file is opened
-set history=100    "recall commands
+colorscheme gotham256
+set colorcolumn=80
 
-set hlsearch    "highlight the words found
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>    "use <ESC> to cancel search
-nnoremap <Leader><Leader> :e#<CR>    "reopen an old file
-set showmatch	"show matching parenthesis
+" trailing white-space highlighting
+highlight ExtraWhitespace ctermbg=red guibg=red
+au ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+au BufWinEnter * match ExtraWhitespace /\s\+$/
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+au BufWinLeave * call clearmatches()
 
-execute pathogen#infect()
+" Map jj to escape
+:inoremap jj <ESC>
 
-"NERDTree plugin config
-let NERDTreeMapActivateNode='<right>'
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>j :NERDTreeFind<CR>
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd p
-
-"Git gutter
-let g:gitgutter_sign_column_always=1
-
+set spell
+set spelllang=en
